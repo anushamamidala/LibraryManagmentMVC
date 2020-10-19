@@ -1,0 +1,32 @@
+﻿@model IEnumerable<LibraryManagmentSystem.Models.Book>
+
+@{
+    ViewBag.Title = "BooksList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row book-header">
+    <h2 class="col-md-4">Books List</h2>
+    <button class="col-md-2 offset-md-2 pull-right create-new-button">@Html.ActionLink("Create New", "AddBook")</button>
+</div>
+
+<div class="cards-container">
+    @foreach (var item in Model)
+    {
+    <a href="@Url.Action("EditBook", "Books", new { id = item.BookId })">
+        <div class="card">
+            <img src="@(item.ImageURL)" alt="Avatar" class="card-img">
+            <div class="card-info-container">
+                <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+                <p>@Html.DisplayFor(modelItem => item.Author)</p>
+            </div>
+        </div>
+    </a>
+        
+        @*<div class="card-options">
+            <button>@Html.ActionLink("Edit", "EditBook", new { id = item.BookId })</button>
+            <button>@Html.ActionLink("Details", "BookDetails", new { id = item.BookId })</button>
+            <button>@Html.ActionLink("Delete", "DeleteBook", new { id = item.BookId })</button>
+        </div>*@
+    }
+
+</div>
